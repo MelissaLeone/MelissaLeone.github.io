@@ -1,3 +1,6 @@
 #body {
-    text-align:center;
+    text-align:center;font-family:"Courier";
 }
+td {
+    padding: 0 15px;
+  }
