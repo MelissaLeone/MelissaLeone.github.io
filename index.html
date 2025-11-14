@@ -92,5 +92,41 @@ Abstract: Passive acoustic data collected during 2020 and 2021 were used to moni
 
         <li>Piping plovers that nest on Long Island beaches are subject to constant aircraft noise, typically in the form of commuters flying between Manhattan and the Hamptons, or advertistment planes flying over beachgoers. Flight paths overlap with suitable nesting habitat. Aircraft noise was recorded for each aircraft type seen, leading to three broad classifcations: helicopter, prop plane, and jet plane. Field classifications allowed for later spectrogram analysis, leading to counts of each aircraft type recorded at each nesting site.</li>
     </ul>
+  <br>
+  <h3>Automation of Data Processing</h3>
+  <br>
+  <ul>
+    <li>Vessel noise was automatically detected using the whistle and moan detector within Ishmael software - Mellinger, 2002.</li>
+    <ul>
+      <li>
+        Files were batch processed with a first order bandpass filter of 65 - 300 Hz, a frame size of 8192, 1x zero padding, and a 1/4x hop size. 
+      </li>
+      <li>Within Ishmael, if a signal fell beyond a set detection threshold of 0.32 for more than 0.1 seconds, the event was considered vessel noise, and a sound file was save for manual inspection using Raven Pro 1.6 software.</li>
+      <li> Within the program, spectrograms are seperated into time intervals, and peaks in energy within the specified frequency band are identified. If the identified peaks are higher than a specified threshold, and far away from other peaks, a detection is made, and a sound file is saved for later confirmation.</li>
+      <li>Two random, continuous weeks of data - n = 2016 files - were selected, one from the Fire Island artificial reef, and one from the Shinnecock Artificial reef. They were manually inspected using Raven Pro 1.6 software to determine the true positive rate of vesssel noise detections. If the following criteria were met: presence of toanl, horizontal bands of energy, an audible recognition of vessel noise, then the file was marked as containing vessel noise.</li>
+      <li>Type I and II errors were calculated to be 9.2% and 6.7% respectfully, meaning vessel noise was detected incorrectly in 84 of the 2016 files, and missed 73 of the 2016 files containing vessel noise.</li>
+    </ul>
+    <li>Sound pressure levels & power spectral densities</li>
+    <ul>
+      <li>
+      Power spectral density was calculated using PAMGuide - Merchant et. al., 2015 - where one minute of audio was used to calculate PSD every ten minutes for both terrestrial - dB re 20 uPa - and marine - dB re 1 uPa - sound files across all frequencies of interest. This resulted in a distribution of values for each 1 Hz bin, that range from 10 - 450 Hz for marine sound files, and 100 - 1000 Hz for terrestrial sound files. 
+      </li>
+      <li>
+        The median PSD levels (50th percentile) provide a metric for the typical conditions in the soundscape, and I present the median, 10th and 90th percentiles for each week of analysis.
+      </li>
+      <li> Root mean square sound pressure levels were calculated for both datasets, with median values compared for files with and without anthrogpogenic noise. Audio files were bandpassed filtered with the same ranges used for PSD calculations, where five seconds of audio were analyzed every ten minutes for both reefs and beaches.  
+    </ul>
+    <li> Atlantic cod grunts were identified using an automated detector - Urazghildiiev and Van Parijs, 2016 - and all calls were visually confirmed using Raven Pro 1.6 software. </li>
+    <ul>
+      <li>
+      Depending on the signal to noise ratio, the detector has an 80 - 93% probability of detecting Atlantic cod grunts.
+      </li>
+      <li>
+        The methods detailed by Caiger et. al. (2020) were used during analysis with: each Atlantic cod grunt needed to meet three criteria in order to be classified as a true positive detection; grunts needsed to have at least two bands of energy visibile on the spectrogram, a fundamental frequency between 40 - 60 Hz, and a distinct audible sound when played back in Raven Pro.
+      </li>
+  </ul>
+  <li>
+    Templates of weakfish calls were saved and used to train an acoustic detection and monitoring database interface using the package monitoR in R. 
+  </li>
 </body>
 </html>
